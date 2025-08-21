@@ -1,9 +1,5 @@
 <div align="center">
 
-# 💀 x-mrrobot-x 💀
-
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=18&duration=2000&pause=500&color=00F5A0&background=0D1117&center=true&vCenter=true&multiline=true&repeat=true&width=600&height=120&lines=x-mrrobot-x;x-mrrobot-x;x-mrrobot-x;Full+Stack+Developer;Tasker+Automation+Specialist;Knowledge+Sharing+Enthusiast" alt="Matrix Effect" />
-
 ```ascii
 ┌─────────────────────────────────────────────────────────────────┐
 │  ██╗  ██╗      ███╗   ███╗██████╗ ██████╗  ██████╗ ██████╗  ██████╗ ████████╗   │
@@ -59,29 +55,6 @@ $ whoami
 
 ---
 
-## 🚀 **[ PROJECTS.DEPLOY ]**
-
-```javascript
-const featuredProjects = {
-  automation: {
-    "file-picker": {
-      description: "🗂️ Advanced folder browser and file picker",
-      tech: ["JavaScript", "Android Integration"],
-      status: "⭐ Active Development"
-    },
-    "routine-flow": {
-      description: "⚡ Intelligent routine management system", 
-      tech: ["JavaScript", "Workflow Automation"],
-      status: "🔥 Production Ready"
-    }
-  },
-  community: {
-    impact: "Tasker Super Brasil Community Instructor",
-    focus: "Knowledge sharing & automation mastery"
-  }
-}
-```
-
 <div align="center">
 <table>
 <tr>
@@ -101,7 +74,7 @@ const featuredProjects = {
 
 ---
 
-## **[ STATS.MATRIX ]**
+**[ STATS.MATRIX ]**
 
 <div align="center">
 <table>
@@ -128,7 +101,7 @@ const featuredProjects = {
 
 ---
 
-## 🎯 **[ MISSION.STATEMENT ]**
+🎯 **[ MISSION.STATEMENT ]**
 
 ```terminal
 > INITIALIZING CORE OBJECTIVES...
@@ -144,7 +117,7 @@ const featuredProjects = {
 
 ---
 
-## 🌐 **[ NETWORK.CONNECT ]**
+🌐 **[ NETWORK.CONNECT ]**
 
 <div align="center">
 
@@ -161,7 +134,7 @@ $ echo "Building the future, one automation at a time"
 
 ---
 
-## 📊 **[ ACTIVITY.LOG ]**
+📊 **[ ACTIVITY.LOG ]**
 
 <div align="center">
 
