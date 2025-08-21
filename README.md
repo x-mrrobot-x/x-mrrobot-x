@@ -1,195 +1,419 @@
-<div align="center">
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>x-mrrobot-x Profile</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-```ascii
-┌─────────────────────────────────────────────────────────────────┐
+        body {
+            background: #000000;
+            color: #00FF00;
+            font-family: 'Courier New', monospace;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .matrix-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            border: 2px solid #00FF00;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .ascii-art {
+            font-size: 10px;
+            line-height: 1;
+            color: #00FF00;
+            white-space: pre;
+            overflow-x: auto;
+            margin-bottom: 20px;
+            text-shadow: 0 0 5px #00FF00;
+        }
+
+        .typing-text {
+            font-size: 18px;
+            margin: 20px 0;
+            color: #00F5A0;
+            text-shadow: 0 0 10px #00F5A0;
+        }
+
+        .badges {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .badge {
+            background: #000;
+            border: 1px solid #00FF00;
+            padding: 5px 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #00FF00;
+            transition: all 0.3s ease;
+            font-size: 12px;
+        }
+
+        .badge:hover {
+            background: #00FF00;
+            color: #000;
+            box-shadow: 0 0 15px #00FF00;
+        }
+
+        .section {
+            margin: 40px 0;
+            padding: 20px;
+            border: 1px solid #00FF00;
+            border-radius: 10px;
+            background: rgba(0, 20, 0, 0.3);
+        }
+
+        .section h2 {
+            color: #00FF00;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 24px;
+            text-shadow: 0 0 10px #00FF00;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .tech-item {
+            background: #000;
+            border: 1px solid #00FF00;
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .tech-item:hover {
+            background: #00FF00;
+            color: #000;
+            transform: scale(1.05);
+        }
+
+        .code-block {
+            background: #001100;
+            border: 1px solid #00FF00;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .project-card {
+            background: rgba(0, 20, 0, 0.5);
+            border: 1px solid #00FF00;
+            padding: 20px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 255, 0, 0.2);
+        }
+
+        .terminal {
+            background: #000;
+            border: 2px solid #00FF00;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .terminal-line {
+            margin: 5px 0;
+        }
+
+        .prompt {
+            color: #00FF00;
+        }
+
+        .output {
+            color: #00F5A0;
+            margin-left: 20px;
+        }
+
+        .footer {
+            text-align: center;
+            margin: 40px 0;
+            padding: 20px;
+            border-top: 2px solid #00FF00;
+        }
+
+        .glow {
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 5px #00FF00; }
+            to { text-shadow: 0 0 20px #00FF00, 0 0 30px #00FF00; }
+        }
+
+        .fade-in {
+            animation: fadeIn 2s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .ascii-art {
+                font-size: 8px;
+            }
+            
+            .tech-grid {
+                grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas class="matrix-canvas" id="matrixCanvas"></canvas>
+    
+    <div class="container">
+        <div class="header fade-in">
+            <div class="ascii-art glow">┌─────────────────────────────────────────────────────────────────┐
 │  ██╗  ██╗      ███╗   ███╗██████╗ ██████╗  ██████╗ ██████╗  ██████╗ ████████╗   │
 │  ╚██╗██╔╝      ████╗ ████║██╔══██╗██╔══██╗██╔═══██╗██╔══██╗██╔═══██╗╚══██╔══╝   │  
 │   ╚███╔╝ █████╗██╔████╔██║██████╔╝██████╔╝██║   ██║██████╔╝██║   ██║   ██║      │
 │   ██╔██╗ ╚════╝██║╚██╔╝██║██╔══██╗██╔══██╗██║   ██║██╔══██╗██║   ██║   ██║      │
 │  ██╔╝ ██╗      ██║ ╚═╝ ██║██║  ██║██║  ██║╚██████╔╝██████╔╝╚██████╔╝   ██║      │
 │  ╚═╝  ╚═╝      ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═════╝  ╚═════╝    ╚═╝      │
-└─────────────────────────────────────────────────────────────────┘
-```
+└─────────────────────────────────────────────────────────────────┘</div>
+            
+            <div class="typing-text glow">
+                > Full Stack Developer<br>
+                > Tasker Automation Specialist<br>
+                > Knowledge Sharing Enthusiast
+            </div>
+            
+            <div class="badges">
+                <span class="badge">MATRIX</span>
+                <span class="badge">ANDROID</span>
+                <span class="badge">AUTOMATION</span>
+            </div>
+        </div>
 
-![Matrix](https://img.shields.io/badge/MATRIX-000000?style=for-the-badge&logo=matrix&logoColor=00FF00)
-![Android](https://img.shields.io/badge/ANDROID-000000?style=for-the-badge&logo=android&logoColor=3DDC84)
-![Automation](https://img.shields.io/badge/AUTOMATION-000000?style=for-the-badge&logo=robot&logoColor=FF6B6B)
+        <div class="section fade-in">
+            <div class="terminal">
+                <div class="terminal-line">
+                    <span class="prompt">$</span> whoami
+                </div>
+                <div class="output">
+                    > Full Stack Developer | Tasker Automation Expert<br>
+                    > Instructor @ Tasker Super Brasil Community<br>
+                    > Code Architect | Knowledge Distributor
+                </div>
+            </div>
+        </div>
 
-</div>
+        <div class="section fade-in">
+            <h2 class="glow">[ TECH.STACK ]</h2>
+            <div class="tech-grid">
+                <div class="tech-item">JavaScript</div>
+                <div class="tech-item">HTML5</div>
+                <div class="tech-item">CSS3</div>
+                <div class="tech-item">Vue.js</div>
+                <div class="tech-item">React</div>
+                <div class="tech-item">Node.js</div>
+                <div class="tech-item">SQL</div>
+                <div class="tech-item">Tasker</div>
+                <div class="tech-item">Android</div>
+            </div>
+        </div>
 
----
+        <div class="section fade-in">
+            <h2 class="glow">[ PROJECTS.DEPLOY ]</h2>
+            <div class="code-block">
+<span style="color: #FF6B6B;">const</span> <span style="color: #4FC08D;">featuredProjects</span> = {
+  <span style="color: #E2C08D;">automation</span>: {
+    <span style="color: #82AAFF;">"file-picker"</span>: {
+      <span style="color: #C3E88D;">description</span>: <span style="color: #C3E88D;">"🗂️ Advanced folder browser and file picker"</span>,
+      <span style="color: #C3E88D;">tech</span>: [<span style="color: #C3E88D;">"JavaScript"</span>, <span style="color: #C3E88D;">"Android Integration"</span>],
+      <span style="color: #C3E88D;">status</span>: <span style="color: #C3E88D;">"⭐ Active Development"</span>
+    },
+    <span style="color: #82AAFF;">"routine-flow"</span>: {
+      <span style="color: #C3E88D;">description</span>: <span style="color: #C3E88D;">"⚡ Intelligent routine management system"</span>,
+      <span style="color: #C3E88D;">tech</span>: [<span style="color: #C3E88D;">"JavaScript"</span>, <span style="color: #C3E88D;">"Workflow Automation"</span>],
+      <span style="color: #C3E88D;">status</span>: <span style="color: #C3E88D;">"🔥 Production Ready"</span>
+    }
+  }
+}
+            </div>
+            
+            <div class="stats-grid">
+                <div class="project-card">
+                    <h3 style="color: #00FF00;">📁 file-picker</h3>
+                    <p>Advanced folder browser and file picker for Android automation</p>
+                </div>
+                <div class="project-card">
+                    <h3 style="color: #00FF00;">⚡ routine-flow</h3>
+                    <p>Intelligent routine management system with workflow automation</p>
+                </div>
+            </div>
+        </div>
 
-**[ SYSTEM.CONNECT ]**
+        <div class="section fade-in">
+            <h2 class="glow">[ MISSION.STATEMENT ]</h2>
+            <div class="terminal">
+                <div class="terminal-line">
+                    <span class="prompt">></span> INITIALIZING CORE OBJECTIVES...
+                </div>
+                <div class="terminal-line">
+                    <span class="prompt">></span> 
+                </div>
+                <div class="output">
+                    [✓] Share knowledge freely within the community<br>
+                    [✓] Develop innovative automation solutions<br>
+                    [✓] Build tools that simplify complex workflows<br>
+                    [✓] Foster learning in Tasker Super Brasil<br>
+                    [✓] Create efficient, scalable code architectures
+                </div>
+                <div class="terminal-line">
+                    <span class="prompt">></span>
+                </div>
+                <div class="output">
+                    MISSION STATUS: ACTIVE | IMPACT: MAXIMIZING
+                </div>
+            </div>
+        </div>
 
-```bash
-$ whoami
-> Tasker Automation Dev
-> Code Architect | Knowledge Distributor
-```
+        <div class="section fade-in">
+            <h2 class="glow">[ NETWORK.CONNECT ]</h2>
+            <div class="terminal">
+                <div class="terminal-line">
+                    <span class="prompt">$</span> echo "Building the future, one automation at a time"
+                </div>
+                <div class="output">
+                    > "Code is poetry, automation is art" - x-mrrobot-x
+                </div>
+            </div>
+        </div>
 
-<div align="center">
-
-[![Tasker Super Brasil](https://img.shields.io/badge/🤖_TASKER_SUPER_BRASIL-INSTRUCTOR-00FF00?style=for-the-badge&logoColor=white)](https://github.com/x-mrrobot-x)
-[![GitHub](https://img.shields.io/badge/GITHUB-x--mrrobot--x-000?style=for-the-badge&logo=github&logoColor=00FF00)](https://github.com/x-mrrobot-x)
-
-</div>
-
----
-
-🛠️ **[ TECH.STACK ]**
-
-<div align="center">
-
-![JavaScript](https://img.shields.io/badge/JavaScript-000000?style=flat-square&logo=javascript&logoColor=F7DF1E)
-![HTML5](https://img.shields.io/badge/HTML5-000000?style=flat-square&logo=html5&logoColor=E34F26)
-![CSS3](https://img.shields.io/badge/CSS3-000000?style=flat-square&logo=css3&logoColor=1572B6)
-![SHELL](https://img.shields.io/badge/Shell-000000?style=flat-square&logo=css3&logoColor=1572B6)
-![Vue.js](https://img.shields.io/badge/Vue.js-000000?style=flat-square&logo=vue.js&logoColor=4FC08D)
-![React](https://img.shields.io/badge/React-000000?style=flat-square&logo=react&logoColor=61DAFB)
-![Node.js](https://img.shields.io/badge/Node.js-000000?style=flat-square&logo=node.js&logoColor=339933)
-![SQL](https://img.shields.io/badge/SQL-000000?style=flat-square&logo=postgresql&logoColor=336791)
-![Tasker](https://img.shields.io/badge/Tasker-000000?style=flat-square&logo=android&logoColor=00FF00)
-![Android](https://img.shields.io/badge/Android-000000?style=flat-square&logo=android&logoColor=3DDC84)
-
-</div>
-
----
-
-<div align="center">
-<table>
-<tr>
-<td width="50%">
-
-[![file-picker](https://github-readme-stats.vercel.app/api/pin/?username=x-mrrobot-x&repo=file-picker&theme=chartreuse-dark&bg_color=000000&title_color=00FF00&text_color=FFFFFF&icon_color=00FF00)](https://github.com/x-mrrobot-x/file-picker)
-
-</td>
-<td width="50%">
-
-[![routine-flow](https://github-readme-stats.vercel.app/api/pin/?username=x-mrrobot-x&repo=routine-flow&theme=chartreuse-dark&bg_color=000000&title_color=00FF00&text_color=FFFFFF&icon_color=00FF00)](https://github.com/x-mrrobot-x/routine-flow)
-
-</td>
-</tr>
-</table>
-</div>
-
----
-
-**[ STATS.MATRIX ]**
-
-<div align="center">
-<table>
-<tr>
-<td width="50%">
-
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=x-mrrobot-x&show_icons=true&theme=chartreuse-dark&bg_color=000000&title_color=00FF00&text_color=FFFFFF&icon_color=00FF00&border_color=00FF00)
-
-</td>
-<td width="50%">
-
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=x-mrrobot-x&layout=compact&theme=chartreuse-dark&bg_color=000000&title_color=00FF00&text_color=FFFFFF&border_color=00FF00)
-
-</td>
-</tr>
-</table>
-</div>
-
-<div align="center">
-
-![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=x-mrrobot-x&theme=chartreuse-dark&background=000000&stroke=00FF00&ring=00FF00&fire=00FF00&currStreakLabel=00FF00)
-
-</div>
-
----
-
-🎯 **[ MISSION.STATEMENT ]**
-
-```terminal
-> INITIALIZING CORE OBJECTIVES...
-> 
-> [✓] Share knowledge freely within the community
-> [✓] Develop innovative automation solutions  
-> [✓] Build tools that simplify complex workflows
-> [✓] Foster learning in Tasker Super Brasil
-> [✓] Create efficient, scalable code architectures
->
-> MISSION STATUS: ACTIVE | IMPACT: MAXIMIZING
-```
-
----
-
-🌐 **[ NETWORK.CONNECT ]**
-
-<div align="center">
-
-```bash
-$ echo "Building the future, one automation at a time"
-> "Code is poetry, automation is art" - x-mrrobot-x
-```
-
-![Profile Views](https://komarev.com/ghpvc/?username=x-mrrobot-x&color=00FF00&style=flat-square&label=PROFILE+VIEWS)
-![GitHub followers](https://img.shields.io/github/followers/x-mrrobot-x?color=00FF00&style=flat-square&label=FOLLOWERS)
-![GitHub stars](https://img.shields.io/github/stars/x-mrrobot-x?color=00FF00&style=flat-square&label=STARS)
-
-</div>
-
----
-
-📊 **[ ACTIVITY.LOG ]**
-
-<div align="center">
-
-![Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=x-mrrobot-x&theme=chartreuse-dark&bg_color=000000&color=00FF00&line=00FF00&point=00FF00&area=true&hide_border=true)
-
-</div>
-
----
-
-## 🏆 **[ ACHIEVEMENTS.UNLOCK ]**
-
-<div align="center">
-
-![Trophies](https://github-profile-trophy.vercel.app/?username=x-mrrobot-x&theme=matrix&no-frame=true&no-bg=true&margin-w=4&column=4)
-
-</div>
-
----
-
-## 💡 **[ AUTOMATION.SHOWCASE ]**
-
-<details>
-<summary>🔧 Featured Automation Scripts</summary>
-
-### 📱 Android Automation
-- **Smart Profile Switcher**: Context-aware profile management
-- **Battery Optimization**: Intelligent power management
-- **File Organization**: Automated file sorting and cleanup
-
-### ⚙️ Workflow Automation
-- **Development Setup**: One-click development environment
-- **Backup Systems**: Automated data backup solutions
-- **Notification Management**: Smart notification filtering
-
-### 🤖 Community Tools
-- **Knowledge Base**: Automated documentation generation
-- **Tutorial Creator**: Interactive learning modules
-- **Support Bot**: Automated community assistance
-
-</details>
-
----
-
-<div align="center">
-
-```ascii
-┌─────────────────────────────────────────────────────────────────┐
-│                  "The Matrix has you, Neo..."                   │
-│               But I have the Matrix - x-mrrobot-x               │
-│                                                                 │
+        <div class="footer fade-in">
+            <div class="ascii-art glow">┌─────────────────────────────────────────────────────────────────┐
 │                     ~ END OF TRANSMISSION ~                     │
 │                    [CONNECTION TERMINATED]                      │
-└─────────────────────────────────────────────────────────────────┘
-```
+└─────────────────────────────────────────────────────────────────┘</div>
+        </div>
+    </div>
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=00FF00&height=100&section=footer&text=HACK%20THE%20WORLD&fontSize=20&fontColor=000000&animation=twinkling"/>
+    <script>
+        // Matrix falling text effect
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
 
-</div>
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const text = 'x-mrrobot-x';
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+
+        const drops = [];
+        for (let x = 0; x < columns; x++) {
+            drops[x] = 1;
+        }
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#00FF00';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const char = text[Math.floor(Math.random() * text.length)];
+                ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 35);
+
+        // Resize canvas on window resize
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.8s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
