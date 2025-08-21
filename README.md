@@ -21,7 +21,7 @@
 
 ---
 
-## 🔗 **[ SYSTEM.CONNECT ]**
+**[ SYSTEM.CONNECT ]**
 
 ```bash
 $ whoami
@@ -94,7 +94,7 @@ const featuredProjects = {
 
 ---
 
-## 📊 **[ STATS.MATRIX ]**
+📊 **[ STATS.MATRIX ]**
 
 <div align="center">
 
@@ -106,7 +106,7 @@ const featuredProjects = {
 
 ---
 
-## 🎯 **[ MISSION.STATEMENT ]**
+🎯 **[ MISSION.STATEMENT ]**
 
 ```terminal
 > INITIALIZING CORE OBJECTIVES...
