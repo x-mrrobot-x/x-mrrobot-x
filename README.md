@@ -19,12 +19,11 @@
 
 ---
 
-## **[ SYSTEM.CONNECT ]**
+**[ SYSTEM.CONNECT ]**
 
 ```bash
 $ whoami
-> Full Stack Developer | Tasker Automation Expert
-> Instructor @ Tasker Super Brasil Community  
+> Tasker Automation Dev
 > Code Architect | Knowledge Distributor
 ```
 
@@ -37,13 +36,14 @@ $ whoami
 
 ---
 
-## 🛠️ **[ TECH.STACK ]**
+🛠️ **[ TECH.STACK ]**
 
 <div align="center">
 
 ![JavaScript](https://img.shields.io/badge/JavaScript-000000?style=flat-square&logo=javascript&logoColor=F7DF1E)
 ![HTML5](https://img.shields.io/badge/HTML5-000000?style=flat-square&logo=html5&logoColor=E34F26)
 ![CSS3](https://img.shields.io/badge/CSS3-000000?style=flat-square&logo=css3&logoColor=1572B6)
+![SHELL](https://img.shields.io/badge/Shell-000000?style=flat-square&logo=css3&logoColor=1572B6)
 ![Vue.js](https://img.shields.io/badge/Vue.js-000000?style=flat-square&logo=vue.js&logoColor=4FC08D)
 ![React](https://img.shields.io/badge/React-000000?style=flat-square&logo=react&logoColor=61DAFB)
 ![Node.js](https://img.shields.io/badge/Node.js-000000?style=flat-square&logo=node.js&logoColor=339933)
